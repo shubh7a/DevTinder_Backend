@@ -23,14 +23,21 @@ app.use("/",profileRouter);
 app.use("/", connectionRouter);
 app.use("/",userRouter);
 app.use("/", uploadRouter);
-
-connectDb().then(()=>{
-console.log(" Database Connection Established");
-app.listen(5000 , ()=>{
-    console.log("Server is successfully running at 5000...");
- });}).catch((err)=>{
-    console.error(" cannot connect !");
+app.get("/",(req,res)=>{
+   res.send("Backend Running");
 });
+// connectDb().then(()=>{
+// console.log(" Database Connection Established");
+// app.listen(5000 , ()=>{
+//     console.log("Server is successfully running at 5000...");
+//  });}).catch((err)=>{
+//     console.error(" cannot connect !");
+// });
 
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, ()=>{
+   console.log(`Server running on ${PORT}`);
+});
 
  
