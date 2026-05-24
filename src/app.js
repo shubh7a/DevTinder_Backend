@@ -28,7 +28,11 @@ app.use("/", uploadRouter);
 //    res.send("Backend Running");
 // });
 
+app.use("/",authRouter);
 
+app.get("/", (req,res)=>{
+   res.send("Backend Running Successfully 🚀");
+});
 
 
 connectDb().then(()=>{
