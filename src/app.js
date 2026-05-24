@@ -85,6 +85,11 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
+res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none"
+});
 connectDb()
   .then(() => {
     console.log("Database Connection Established");
