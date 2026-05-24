@@ -25,6 +25,9 @@ const {validateSignUp}= require("../utils/validation");
       const token=await savedUser.getJWT();
 //adding token to cookie and sending response
       res.cookie("token",token,{
+         httpOnly: true,
+   secure: true,
+   sameSite: "none",
          expires:new Date(Date.now()+8*3600000),
          });
     res.json({message:"User created successfully", user: savedUser});
@@ -50,6 +53,9 @@ authRouter.post("/login",async (req,res)=>{
       
 //adding token to cookie and sending response
       res.cookie("token",token,{
+         httpOnly: true,
+   secure: true,
+   sameSite: "none",
          expires:new Date(Date.now()+8*3600000),
          });
       res.send(user.firstName +" "+ user.lastName + " : Loggedin Successfully !!");}
@@ -66,6 +72,9 @@ authRouter.post("/login",async (req,res)=>{
 authRouter.post("/logout", async (req,res)=>{
    res.cookie("token",null,{
       expires:new Date(Date.now()),
+      httpOnly:true,
+      secure:true,
+      sameSite:"none"
    }).send(user.firstName +" "+ user.lastName + " : Logout Succesfull !!");
 });
 
